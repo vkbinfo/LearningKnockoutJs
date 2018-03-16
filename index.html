@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cat Clicker</title>
+</head>
+<body>
+    <ul id="cat-list"></ul>
+    <div id="cat">
+
+        <h2 data-bind="text:name"></h2>
+        <div data-bind="text:clickCounter"></div>
+        <img  data-bind="click:incrementclickCounter,attr:{src:ImgSrc}"
+        style="width:400px;height:400px;" alt="cute cat">
+
+    </div>
+    <script src="script/lib/knockout.js"></script>
+    <script src="script/script.js"></script>
+</body>
+</html>
