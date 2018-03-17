@@ -8,8 +8,8 @@
 <body>
     <div class="row">
         <div class="col-md-4">
-            <ul data-bind="foreach:catList">
-                <li data-bind="event:{click:$parent.listItemClick},text:name,attr:{id:index}"></li>
+            <ul data-bind="foreach:catData">
+                <li data-bind="click:$parent.listItemClick,text:name"></li>
             </ul>
         </div>
         <div class="col-md-8">

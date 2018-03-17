@@ -53,13 +53,9 @@ var viewModel=function(){
     // we are changing our context to that from this becuase we are using with
     // in dom.
     var that=this;
-    that.catList=[]
     that.catData=ko.observableArray();
     initialCatData.forEach(function(data){
         that.catData().push(new cat(data));
-    });
-    that.catData().forEach(function(data,index){
-        that.catList.push({name:data.name(),index:index});
     });
     that.currentCat=ko.observable(that.catData()[2]);
     that.incrementclickCounter=function(){
@@ -68,8 +64,10 @@ var viewModel=function(){
         // in dom this is currentCat() not viewModel because of with..awesome
         that.currentCat().clickCounts(that.currentCat().clickCounts()+1);
     };
-    that.listItemClick=function(event){
-        that.currentCat(that.catData()[event.index]);
+    that.listItemClick=function(eventObj){
+        //eventObj is here is a element of catData, which is a ko watching object/
+        console.log(eventObj)
+        that.currentCat(eventObj);
     };
 }
 
