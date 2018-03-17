@@ -3,16 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Cat Clicker</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-    <ul id="cat-list"></ul>
-    <div id="cat">
-
-        <h2 data-bind="text:name"></h2>
-        <div data-bind="text:clickCounter"></div>
-        <img  data-bind="click:incrementclickCounter,attr:{src:ImgSrc}"
-        style="width:400px;height:400px;" alt="cute cat">
-
+    <div class="row">
+        <div class="col-md-4">
+            <ul data-bind="foreach:catList">
+                <li data-bind="event:{click:$parent.listItemClick},text:name,attr:{id:index}"></li>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <div id="cat">
+                <div data-bind="with:currentCat">
+                    <h2 data-bind="text:name"></h2>
+                    <h3 data-bind="text:title"></h3>
+                    <div data-bind="text:clickCounts"></div>
+                    <!-- we are using $parent to get out of with context in knockoutjs
+                    becase incrementCounter function is in viewModel, not in our
+                    currentCat(), and $dollar just escapes -->
+                    <img  data-bind="click:$parent.incrementclickCounter,attr:{src:ImgSrc}"
+                    style="width:400px;height:400px;" alt="cute cat">
+                    <ul data-bind="foreach:nickNames">
+                        <li data-bind="text:name"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="script/lib/knockout.js"></script>
     <script src="script/script.js"></script>
